@@ -1,0 +1,14 @@
+tensorflow
+matplotlib
+tqdm
+imageio
+numpy
+pandas
+palettable
+scikit-learn
+scipy
+jupyterlab
+keras
+# h5py
+# xgboost
+gym

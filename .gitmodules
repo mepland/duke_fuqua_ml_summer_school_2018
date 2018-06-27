@@ -1,0 +1,3 @@
+[submodule "Duke-MLSS-2018"]
+	path = Duke-MLSS-2018
+	url = git@github.com:duke-mlss/Duke-MLSS-2018.git
