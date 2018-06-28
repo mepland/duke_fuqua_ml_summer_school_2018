@@ -3,7 +3,7 @@
 Matthew Epland  
 matthew.epland@duke.edu  
 
-My work for the 2018 Duke Fuqua Machine Learning Summer School, June 25-29  
+My work for the [2018 Duke Fuqua Machine Learning Summer School](https://www.fuqua.duke.edu/machine-learning-summer-school), June 25-29  
 
 ## Cloning the Repository
 ```bash
