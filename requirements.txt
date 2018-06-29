@@ -9,6 +9,6 @@ scikit-learn
 scipy
 jupyterlab
 keras
-# h5py
+h5py
 # xgboost
 gym
