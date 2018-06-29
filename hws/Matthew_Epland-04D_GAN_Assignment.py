@@ -134,6 +134,7 @@ def discriminator(images):
 
 
 tf.reset_default_graph()
+tf.set_random_seed(7)
 
 # Placeholders
 real_X = tf.placeholder(tf.float32, [None, image_size])
@@ -195,33 +196,29 @@ for t in range(iterations):
 # 5. Generate a list of ten vectors `steps = [..., ..., ...]`, where entry `i` is `i*10`% of the way from start to end.
 # 6. `np.concatenate(steps)` (with appropriate axis) to get a new noise matrix. Run the GAN on that noise matrix, and visualize the 10 images you get as results.
 
-# In[28]:
+# In[15]:
 
 
-np.random.seed(12) # for reproducibility, picked for good example images
+np.random.seed(3) # for reproducibility, picked for good example images
 noise = np.random.uniform(-1, 1, [10, z_dimension])
-
-
-# In[31]:
-
-
 fake_data = sess.run(fake_X, feed_dict={z: noise})
 # visualize_row(fake_data)
-start_n = 0
-visualize_row(fake_data[start_n:start_n+2])
+start_n = 3
+stop_n = 4
+visualize_row(fake_data[start_n:stop_n+1])
 
 
-# In[32]:
+# In[16]:
 
 
 start = noise[start_n]
-end = noise[start_n+1]
+end = noise[stop_n]
 delta = end - start
 steps = [start + i*0.1*delta for i in range(10)]
 noise_stepped = np.concatenate(steps, axis=0).reshape(10,z_dimension)
 
 
-# In[33]:
+# In[17]:
 
 
 fake_data_stepped = sess.run(fake_X, feed_dict={z: noise_stepped})
@@ -239,17 +236,18 @@ visualize_row(fake_data_stepped)
 # 3. Train the GAN.
 # 4. Try making the GAN generate a few ones, then a few threes, by concatenating `[0, 1, 0, 0, 0, 0, 0, 0, 0, 0]` or `[0, 0, 0, 1, 0, 0, 0, 0, 0, 0]`, say, to your noise vectors. How does it do?
 
-# In[34]:
+# In[18]:
 
 
 labels_size = 10
 from keras.utils import to_categorical
 
 
-# In[35]:
+# In[19]:
 
 
 tf.reset_default_graph()
+tf.set_random_seed(7)
 
 # Placeholders
 real_X = tf.placeholder(tf.float32, [None, image_size+labels_size])
@@ -279,7 +277,7 @@ optimize_g = tf.train.AdamOptimizer().minimize(g_loss, var_list=variables_from_s
 initialize_all = tf.global_variables_initializer()
 
 
-# In[36]:
+# In[20]:
 
 
 def make_noise():
@@ -296,7 +294,7 @@ def next_feed_dict():
             z:      make_noise()}
 
 
-# In[37]:
+# In[21]:
 
 
 # Train the GAN.
@@ -314,7 +312,7 @@ for t in range(iterations):
         visualize_row(fake_data[:5])
 
 
-# In[38]:
+# In[22]:
 
 
 np.random.seed(2) # for reproducability
